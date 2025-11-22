@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce AI Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Icons (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-robot"></i>
+                <h1>AI Hub</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><i class="fa-solid fa-chart-line"></i> Overview</li>
+                    <li><i class="fa-solid fa-money-bill-trend-up"></i> Finance</li>
+                    <li><i class="fa-solid fa-boxes-stacked"></i> Inventory</li>
+                    <li><i class="fa-solid fa-users"></i> Customers</li>
+                    <li><i class="fa-solid fa-store"></i> Competitors</li>
+                    <li><i class="fa-solid fa-gear"></i> Operations</li>
+                </ul>
+            </nav>
+            <div class="theme-toggle">
+                <span>Theme</span>
+                <button id="toggleTheme"><i class="fa-solid fa-moon"></i></button>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="search">
+                    <input id="global-search" placeholder="Search products, customers, invoices...">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div class="top-actions">
+                    <button id="scrapeBtn" class="btn btn-secondary"><i class="fa-solid fa-spider"></i> Scrape Competitors</button>
+                    <button id="refreshBtn" class="btn"><i class="fa-solid fa-sync"></i> Refresh</button>
+                </div>
+            </header>
+
+            <section class="grid">
+                <div class="card glass">
+                    <div class="card-head"><i class="fa-solid fa-chart-simple"></i><h2>Overview</h2></div>
+                        <div id="overview-content" class="card-body">Loading...</div>
+                        <div style="margin-top:12px"><canvas id="overviewChart" height="120"></canvas></div>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-head"><i class="fa-solid fa-file-invoice-dollar"></i><h2>Financial Insights</h2></div>
+                    <div id="financial-content" class="card-body">Loading...</div>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-head"><i class="fa-solid fa-boxes"></i><h2>Inventory Automation</h2></div>
+                        <div id="inventory-content" class="card-body">Loading...</div>
+                        <div style="margin-top:12px"><canvas id="inventoryChart" height="120"></canvas></div>
+                </div>
+
+                <div class="card glass">
+                    <div class="card-head"><i class="fa-solid fa-user-group"></i><h2>Customer Loyalty</h2></div>
+                        <div id="loyalty-content" class="card-body">Loading...</div>
+                        <div style="margin-top:12px"><canvas id="customersChart" height="120"></canvas></div>
+                </div>
+
+                <div class="card glass chatbot-card">
+                    <div class="card-head"><i class="fa-solid fa-comments"></i><h2>AI Assistant</h2></div>
+                    <div id="chat-messages" class="chat-area">Start a conversation with your AI assistant.</div>
+                    <div class="chat-input">
+                        <input type="text" id="chat-query" placeholder="Ask about your business...">
+                        <button onclick="sendMessage()" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </section>
+            <footer class="footer">Powered by Gemini • AI-Powered E-Commerce Hub</footer>
+        </main>
+    </div>
+
+    <!-- Modal container for dynamic panels -->
+    <div id="modal" class="modal" style="display:none">
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close">&times;</button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Chart.js for charts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
